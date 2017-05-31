@@ -1,8 +1,10 @@
 customersApp.service('customerService', function () {
+    //Get all customers
     this.getAll = function () {
         return JSON.parse(localStorage.getItem(CUSTOMERS_KEY));
     };
 
+    //Get customer by id
     this.getCustomer = function (id) {
         var customers = this.getAll();
         var result = customers.filter(function (item) {
@@ -12,6 +14,7 @@ customersApp.service('customerService', function () {
         return null;
     }
 
+//Insert customer
     this.addItem = function (customer) {
         var array = this.getAll();
         var today = new Date();
@@ -20,6 +23,7 @@ customersApp.service('customerService', function () {
         localStorage.setItem(CUSTOMERS_KEY, JSON.stringify(array));
     };
 
+    //Remove customer
     this.removeItem = function (id) {
         var array = this.getAll();
         for (var i = 0; i < array.length; i++) {
@@ -32,11 +36,13 @@ customersApp.service('customerService', function () {
         localStorage.setItem(CUSTOMERS_KEY, JSON.stringify(array));
     }
 
+    //Update customer
     this.updateItem = function (customer) {
         this.removeItem(customer.customerId);
         this.addItem(customer);
     }
 
+    //Get navigation data
     this.getNavigationData = function (customerId) {
         var navigation = JSON.parse(localStorage.getItem(NAVIGATION_KEY));
         var data = navigation.filter(function (nav) {
@@ -45,6 +51,7 @@ customersApp.service('customerService', function () {
         return data;
     }
 
+    //initialize mock data
     this.initData = function () {
         if (localStorage.getItem(CUSTOMERS_KEY)) {
             return;
@@ -176,6 +183,7 @@ customersApp.service('customerService', function () {
         localStorage.setItem(NAVIGATION_KEY, JSON.stringify(navigation));
     }
 
+    //Generate unique string
     this.guid = function () {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
