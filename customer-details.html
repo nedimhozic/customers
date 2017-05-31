@@ -1,0 +1,100 @@
+<div ng-controller="CustomerDetailsController">
+    <h1>Customer Details</h1>
+    <div class="panel panel-default customer-details">
+        <form name="customerForm" class="form-horizontal" ng-submit="submitCustomer()" novalidate>
+            <div class="form-group">
+                <label for="customerId" class="col-sm-4 control-label">Customer ID</label>
+                <div class="col-sm-8 padding-right-55">
+                    <input type="text" ng-model="customer.customerId" class="form-control" id="customerId" placeholder="Customer ID" disabled>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': submitted && customerForm.firstName.$invalid}">
+                <label for="firstName" class="col-sm-4 control-label">First Name</label>
+                <div class="col-sm-8 padding-right-55">
+                    <input type="text" ng-model="customer.firstName" required class="form-control" name="firstName" placeholder="First Name">
+                    <span class="help-block" ng-show="customerForm.firstName.$invalid && submitted">
+                        *
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': submitted && customerForm.lastName.$invalid}">
+                <label for="lastName" class="col-sm-4 control-label">Last Name</label>
+                <div class="col-sm-8 padding-right-55">
+                    <input type="text" ng-model="customer.lastName" required class="form-control" name="lastName" placeholder="Last Name">
+                    <span class="help-block" ng-show="customerForm.lastName.$invalid && submitted">
+                        *
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': submitted && customerForm.birthday.$invalid}">
+                <label for="birthday" class="col-sm-4 control-label">Birthday</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <datepicker date-format="yyyy-MM-dd">
+                        <input type="text" ng-model="customer.birthday" class="form-control" name="birthday" required ng-pattern="datePattern" placeholder="Birthday">
+                        </datepicker>
+                        <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                    </div>
+                    <span class="help-block" ng-show="customerForm.birthday.$error.required && submitted">
+                        *
+                    </span>
+                    <span class="help-block" ng-show="customerForm.birthday.$error.pattern && submitted">
+                        Wrong format
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': submitted && customerForm.gender.$invalid}">
+                <label for="gender" class="col-sm-4 control-label">Gender</label>
+                <div class="col-sm-8 padding-right-55">
+                    <select class="form-control" required ng-model="customer.gender" name="gender">
+                            <option value>Gender</option>
+                            <option value="m">Male</option>
+                            <option value="w">Female</option>
+                        </select>
+                    <span class="help-block" ng-show="customerForm.gender.$invalid && submitted">
+                        *
+                    </span>
+                </div>
+            </div>
+            <div class="form-group"  ng-class="{'has-error': submitted && customerForm.lastContact.$invalid}">
+                <label for="lastContact" class="col-sm-4 control-label">Last Contact</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <datepicker date-format="yyyy-MM-dd">
+                            <input type="text" ng-model="customer.lastContact" class="form-control" name="lastContact" required ng-pattern="datePattern" placeholder="Last Contact">
+                        </datepicker>
+                        <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                    </div>
+                    <span class="help-block" ng-show="customerForm.lastContact.$error.required && submitted">
+                        *
+                    </span>
+                    <span class="help-block" ng-show="customerForm.lastContact.$error.pattern && submitted">
+                        Wrong format
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': submitted && customerForm.lifetimeValue.$invalid}">
+                <label for="lifetimeValue" class="col-sm-4 control-label">Customer Lifetime Value</label>
+                <div class="col-sm-8 padding-right-55">
+                    <input type="number" min="0" ng-model="customer.lifetimeValue" required class="form-control" name="lifetimeValue" placeholder="Customer Lifetime Value"
+                        ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01">
+                    <span class="help-block" ng-show="customerForm.lifetimeValue.$error.required && submitted">
+                        *
+                    </span>
+                    <span class="help-block" ng-show="customerForm.lifetimeValue.$viewValue < 0 && submitted">
+                        Must be non-negative
+                    </span>
+                </div>
+            </div>
+
+            <div class="row text-center form-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="back()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+.panel {
+    margin-top:10px;
+}
+
+table > thead > tr > th.options {
+    width:180px;
+}
+
+.customer-details {
+    padding: 45px 15px 15px;
+}
+
+.padding-right-55 {
+    padding-right: 55px;
+}
+
+.form-footer {
+    background-color: #eee;
+    height: 50px;
+}
+
+.form-footer .btn {
+    margin-top: 8px;
+}
+
+.help-block {
+    margin-top: 0px!important;
+    margin-bottom: -15px!important;
+}
+
+._720kb-datepicker-calendar {
+    width:45%!important;
+    margin: 36px auto!important;
+}
+
+.sort-column {
+    cursor:pointer!important;
+}

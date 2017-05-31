@@ -1,0 +1,20 @@
+<div ng-controller="NavigationDataController">
+    <h1>Navigation Data for {{customerName}}</h1>
+    <div class="table-responsive panel panel-default">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Page</th>
+                    <th class="sort-column" ng-click="sort()"><span class="glyphicon" ng-class="classForSort"></span>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="nav in navigation | orderBy:orderByColumn">
+                    <td>{{ nav.pages }}</td>
+                    <td>{{ nav.timestamp }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btn-primary btn-sm" ng-click="back()">Back To Overview</button>
+</div>

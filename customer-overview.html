@@ -1,0 +1,30 @@
+<div ng-controller="CustomerOverviewController">
+<h1>Customer Overview</h1>
+<button class="btn btn-primary btn-sm" ng-click="addNew()">Add New Customer</button>
+<div class="table-responsive panel panel-default">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="sort-column" ng-click="sort()"><span class="glyphicon" ng-class="classForSort"></span>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th class="options">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="customer in customers | orderBy:orderByColumn">
+                <td>{{ customer.firstName }}</td>
+                <td>{{ customer.lastName }}</td>
+                <td>{{ customer.age }}</td>
+                <td>{{ customer.gender.toUpperCase() }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="edit(customer.customerId)">Edit</button>
+                    <button class="btn btn-primary btn-sm" ng-click="remove(customer.customerId)">Delete</button>
+                    <button class="btn btn-success btn-sm" ng-click="goToNavigation(customer.customerId)">Navi</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
